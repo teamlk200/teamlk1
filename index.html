@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>TEAMLK – Sensibilidade Free Fire</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+      color:#fff;
+    }
+    header{
+      text-align:center;
+      padding:40px 20px;
+    }
+    header h1{
+      color:#00ffcc;
+      font-size:3rem;
+    }
+    .container{
+      max-width:1100px;
+      margin:auto;
+      padding:20px;
+    }
+    .card{
+      background:#111;
+      border-radius:15px;
+      padding:25px;
+      margin-bottom:30px;
+      box-shadow:0 0 20px rgba(0,255,204,.2);
+    }
+    .card h2{
+      color:#00ffcc;
+      margin-bottom:15px;
+    }
+    .btn{
+      display:inline-block;
+      padding:15px 25px;
+      background:#00ffcc;
+      color:#000;
+      font-weight:bold;
+      border-radius:10px;
+      text-decoration:none;
+      cursor:pointer;
+    }
+    .btn:hover{background:#00ccaa}
+    .hidden{display:none}
+    .qr{text-align:center}
+    .qr img{max-width:200px;margin:20px 0}
+    .sens-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:15px;
+    }
+    .sens{
+      background:#1c1c1c;
+      padding:15px;
+      border-radius:10px;
+      border:1px solid #00ffcc44;
+    }
+    input{
+      width:100%;
+      padding:12px;
+      border-radius:8px;
+      border:none;
+      margin:10px 0;
+    }
+    footer{text-align:center;padding:20px;opacity:.7}
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>TEAMLK</h1>
+  <p>Sensibilidades Profissionais para Free Fire</p>
+</header>
+
+<div class="container">
+
+  <div class="card">
+    <h2>Comprar Acesso</h2>
+    <p>Após o pagamento, você recebe sua <b>Key de acesso</b>.</p><br>
+    <button class="btn" onclick="document.getElementById('pagamento').classList.remove('hidden')">
+      Comprar via WhatsApp
+    </button>
+  </div>
+
+  <div class="card hidden" id="pagamento">
+    <h2>Pagamento</h2>
+    <div class="qr">
+      <p>Escaneie o QR Code</p>
+      <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=PIX-TEAMLK">
+      <br>
+      <a class="btn" target="_blank"
+         href="https://wa.me/5500000000000?text=Segue%20meu%20comprovante">
+        Enviar comprovante
+      </a><br><br>
+      <button class="btn" onclick="gerarKey()">Já enviei</button>
+    </div>
+  </div>
+
+  <div class="card hidden" id="key">
+    <h2>Sua Key</h2>
+    <input id="keyGerada" readonly>
+    <button class="btn" onclick="document.getElementById('login').classList.remove('hidden')">
+      Entrar
+    </button>
+  </div>
+
+  <div class="card hidden" id="login">
+    <h2>Área de Membros</h2>
+    <input id="inputKey" placeholder="Digite sua key">
+    <button class="btn" onclick="validarKey()">Acessar</button>
+  </div>
+
+  <div class="card hidden" id="membros">
+    <h2>Sensibilidades Exclusivas – TEAMLK</h2>
+
+    <h3>Android</h3>
+    <div class="sens-grid">
+      <script>
+        for(let i=1;i<=25;i++){
+          document.write(`<div class='sens'>
+            Android ${i}<br>
+            Geral: ${80+i}%<br>
+            Red Dot: ${70+i}%<br>
+            2x: ${60+i}%<br>
+            4x: ${50+i}%
+          </div>`);
+        }
+      </script>
+    </div>
+
+    <br><h3>iOS</h3>
+    <div class="sens-grid">
+      <script>
+        for(let i=1;i<=25;i++){
+          document.write(`<div class='sens'>
+            iOS ${i}<br>
+            Geral: ${75+i}%<br>
+            Red Dot: ${65+i}%<br>
+            2x: ${55+i}%<br>
+            4x: ${45+i}%
+          </div>`);
+        }
+      </script>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 TEAMLK – Todos os direitos reservados
+</footer>
+
+<script>
+  let keyGlobal="";
+  function gerarKey(){
+    keyGlobal="TEAMLK-"+Math.random().toString(36).substr(2,8).toUpperCase();
+    document.getElementById("keyGerada").value=keyGlobal;
+    document.getElementById("key").classList.remove("hidden");
+  }
+  function validarKey(){
+    if(document.getElementById("inputKey").value===keyGlobal){
+      document.getElementById("membros").classList.remove("hidden");
+      alert("Acesso liberado!");
+    }else{
+      alert("Key inválida");
+    }
+  }
+</script>
+
+</body>
+</html>
